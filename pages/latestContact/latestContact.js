@@ -1,6 +1,7 @@
 // pages/latestContact/latestContact.js
-Page({
+import { queryLatestContactUrl} from '../../utils/api.js';
 
+Page({
   /**
    * 页面的初始数据
    */
@@ -16,12 +17,29 @@ Page({
       }
     ]
   },
+  refreshPage(cb) {
+    var that = this;
+    wx.request({
+      url: queryLatestContactUrl(
+          {openId: wx.getStorageSync('openId')}
+      ),
+      success(res) {
+        console.log(res.data);
+        that.setData({
+          latestContact: res.data
+        })
+      },
+      fail(res) {
+        console.log(res)
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // this.refreshPage();
   },
 
   /**
@@ -35,7 +53,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.refreshPage();
   },
 
   /**

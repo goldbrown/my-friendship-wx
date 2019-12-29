@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/friendList/friendList",
     "pages/latestContact/latestContact",
+    "pages/friendList/friendList",
     "pages/latest/latest",
     "pages/hotest/hotest",
     "pages/classify/classify",
