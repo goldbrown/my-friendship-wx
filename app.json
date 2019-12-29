@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/friendList/friendList",
+    "pages/latestContact/latestContact",
     "pages/latest/latest",
     "pages/hotest/hotest",
     "pages/classify/classify",
@@ -20,22 +22,16 @@
     "borderStyle": "white",
     "list": [
       {
-        "pagePath": "pages/latest/latest",
-        "text": "最新",
+        "pagePath": "pages/friendList/friendList",
+        "text": "朋友列表",
         "iconPath": "images/latest.png",
         "selectedIconPath": "images/latest_on.png"
       },
       {
-        "pagePath": "pages/hotest/hotest",
-        "text": "热门",
+        "pagePath": "pages/latestContact/latestContact",
+        "text": "最近联系",
         "iconPath": "images/hotest.png",
         "selectedIconPath": "images/hotest_on.png"
-      },
-      {
-        "pagePath": "pages/classify/classify",
-        "text": "分类",
-        "iconPath": "images/classify.png",
-        "selectedIconPath": "images/classify_on.png"
       }
     ]
   },

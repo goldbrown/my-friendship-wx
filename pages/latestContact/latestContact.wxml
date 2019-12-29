@@ -1,0 +1,16 @@
+<!--pages/latestContact/latestContact.wxml-->
+    <view class="page__bd">
+        <view class="weui-cells__title">最近联系过</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">时间</view>
+                <view class="weui-cell__bd">朋友</view>
+            </view>
+        </view>
+        <view class="weui-cells weui-cells_after-title" wx:for="{{latestContact}}" wx:key="index">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">{{item.date}}</view>
+                <view class="weui-cell__bd">{{item.friendName}}</view>
+            </view>
+        </view>
+    </view>

@@ -1,22 +1,5 @@
-const host_base = "https://www.v2ex.com/api/";
-// const host_base = "localhost:8080/api/";
-
-// 所有节点
-const all_nodes = "nodes/all.json";
-// 通过节点 id, name 获取信息
-const node_info = "nodes/show.json";
-
-// 主题
-const topics = "topics/show.json";
-// 获取最新主题
-const latest_topics = "topics/latest.json";
-// 获取最热主题
-const hotest_topics = "topics/hot.json";
-
-// 获取回复
-const replies = "replies/show.json";
-// 获取用户信息
-const user_info = "members/show.json";
+// const host_base = "https://www.v2ex.com/api/";
+const host_base = "http://localhost:8080";
 
 const _encodeURL = (obj) => (
   Object.keys(obj).map(item => (
@@ -24,18 +7,14 @@ const _encodeURL = (obj) => (
   ))
 )
 
-const getAllNodes = () => ( host_base + all_nodes );
-const getNodeInfo = (obj) => (host_base + node_info +'?' + _encodeURL(obj));
-const getTopicInfo = (obj) => (host_base + topics + '?' + _encodeURL(obj));
-const getLatestTopics = (obj) => (host_base + latest_topics +'?' + _encodeURL(obj));
-const getHotestInfo = (obj) => (host_base + hotest_topics +'?' + _encodeURL(obj));
-const getReplies = (obj) => ( host_base + replies + '?' + _encodeURL(obj));
+const queryFriendListVOUrl = (obj) => ( host_base + "/user/" + obj.openId + "/allFriendListVO");
+const addFriendListUrl = (obj) => (host_base + "/user/friends");
+const incrContactUrl = (obj) => (host_base + "/user/friend/record");
+const queryLatestContactUrl = (obj) => (host_base + "/user/" + openId + "/latestContact");
 
 module.exports = {
-  getAllNodes,
-  getNodeInfo,
-  getTopicInfo,
-  getLatestTopics,
-  getHotestInfo,
-  getReplies,
+  queryFriendListVOUrl,
+  addFriendListUrl,
+  incrContactUrl,
+  queryLatestContactUrl
 }

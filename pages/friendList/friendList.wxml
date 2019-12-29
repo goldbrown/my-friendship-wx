@@ -1,0 +1,36 @@
+<!--pages/friendList/friendList.wxml-->
+<view class="page">
+
+<!-- friend list -->
+    <view class="page__bd">
+        <view class="weui-cells__title">朋友列表</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">朋友称呼</view>
+                <view class="weui-cell__bd">联系频率</view>
+                <view class="weui-cell__bd">操作</view>
+            </view>
+
+            <view class="weui-cell" wx:for="{{friendVOList}}" wx:key="index">
+                <view class="weui-cell__bd">{{item.friendName}}</view>
+                <view class="weui-cell__bd">{{item.contactCount}}</view>
+                <button class="weui-btn mini-btn" id="{{item.friendName}}" type="primary" size="mini" bindtap="incrContact">今日联系过</button>
+            </view>
+        </view>
+    </view>
+
+<!-- add friend form -->
+      <view class="weui-cells__title">添加朋友</view>
+      <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell">
+              <view class="weui-cell__bd">
+                  <textarea class="weui-textarea" placeholder="请输入朋友称呼；添加多个朋友时，用“,”隔开。比如 张三,李四" style="height: 3.3em" bindinput="handleInputChange" value="{{newFriendListStr}}"/>
+                  <view class="weui-textarea-counter">0/200</view>
+              </view>
+          </view>
+      </view>
+      <view class="weui-btn-area">
+          <button class="weui-btn" type="primary" size="mini" bindtap="addFriendListStr">添加</button>
+      </view>
+</view>
+
