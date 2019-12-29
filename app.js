@@ -1,25 +1,33 @@
 //app.js
+import { loginUrl} from './utils/api.js';
+
 App({
   onLaunch: function () {
     if (wx.getStorageSync('openId')) {
       console.log("stored openId:" + wx.getStorageSync('openId'))
       return;
     }
-    // 登录
+    this.loginCallback();
+  },
+  loginCallback(cb) {
+    // console.log("cb is " + cb);
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         if(res.code) {
           wx.request({
-            url: 'http://localhost:8080/api/user/login',
+            url: loginUrl(),
             data: {
               code: res.code
             },
             success: function(res) {
               // login success
+              // console.log('openId:' + res.data);
               if(res.data) {
                 wx.setStorageSync('openId', res.data);
-                console.log(res.data);
+                if(cb) {
+                  cb();
+                }
               } else {
                 console.log("登录失败");
               }
@@ -51,8 +59,5 @@ App({
     //     }
     //   }
     // });
-  },
-  globalData: {
-    userInfo: null
   }
 })

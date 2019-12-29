@@ -1,21 +1,19 @@
 // pages/friendList/friendList.js
 import { queryFriendListVOUrl, addFriendListUrl, incrContactUrl} from '../../utils/api.js';
 
+const app = getApp()
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    friendVOList: [
-      {
-        "friendName": "chris",
-        "contactCount": 11
-      }
-    ],
+    friendVOList: [],
     newFriendListStr: ""
   },
-  refreshPage(cb) {
+  fetchData() {
     var that = this;
+    // console.log("callback:" + wx.getStorageSync('openId'));
     wx.request({
       url: queryFriendListVOUrl(
           {openId: wx.getStorageSync('openId')}
@@ -26,9 +24,18 @@ Page({
         })
       },
       fail: function(res) {
-        console.log(res)
+        // console.log(res)
       }
     })
+  },
+  refreshPage() {
+    // console.log("before refresh:" + wx.getStorageSync('openId'));
+    if (!wx.getStorageSync('openId')) {
+      // console.log("callback");
+      app.loginCallback(this.fetchData);
+    } else {
+      this.fetchData();
+    }
   },
   addFriendListStr(e) {
     var that = this;
@@ -50,11 +57,11 @@ Page({
       },
       success: function(res) {
         // 刷新列表
-        console.log(res.data)
+        // console.log(res.data)
         that.refreshPage();
       },
       fail: function(res) {
-        console.log(res)
+        // console.log(res)
       }
     })
   },
@@ -84,11 +91,11 @@ Page({
       },
       success: function(res) {
         // 刷新列表
-        console.log(res.data)
+        // console.log(res.data)
         that.refreshPage();
       },
       fail: function(res) {
-        console.log(res)
+        // console.log(res)
       }
     })
   },
@@ -97,7 +104,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(){
-    this.refreshPage(() => (console.log()));
+    this.refreshPage();
   },
 
   /**
@@ -111,7 +118,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.refreshPage();
   },
 
   /**

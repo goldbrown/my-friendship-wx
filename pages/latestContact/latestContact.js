@@ -24,13 +24,13 @@ Page({
           {openId: wx.getStorageSync('openId')}
       ),
       success(res) {
-        console.log(res.data);
+        // console.log(res.data);
         that.setData({
           latestContact: res.data
         })
       },
       fail(res) {
-        console.log(res)
+        // console.log(res)
       }
     })
   },
