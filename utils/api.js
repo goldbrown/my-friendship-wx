@@ -1,5 +1,5 @@
-// const host_base = "https://www.v2ex.com/api/";
-const host_base = "http://localhost:8080";
+const host_base = "https://www.my-app.com.cn:8443";
+// const host_base = "http://localhost:8080";
 
 const queryFriendListVOUrl = (obj) => ( host_base + "/user/" + obj.openId + "/allFriendListVO");
 const addFriendListUrl = (obj) => (host_base + "/user/friends");
